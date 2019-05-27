@@ -6,6 +6,8 @@ Learning Employer Reviews.
 
 <img src="Employer%20Reviews.jpg">
 
+Employers are always looking to improve their work environment, which can lead to increased productivity level and Employee retention level. If a Company's Employees are content with their overall experience of the Company, then the productivity level and Employee retention level would naturally increase. In order to improve an Employer's work environment, the Employer must first analyze their current Employer Reviews before making a decision on how to improve the work environment. However, with hundreds and thousands of Employer Reviews on review board such as [Glassdoor](https://www.glassdoor.ca), this can take a significant amount of time and resource. I will be attempting to use Topic Modeling to extract all the key topics of Employer Reviews, which can be used by Employers, to make adjustments for improving their work environment.
+
 The dataset I will be using is from www.kaggle.com.
 
 I have also provided the direct link below if you wish to view the dataset I used to build my model:
@@ -14,4 +16,4 @@ I have also provided the direct link below if you wish to view the dataset I use
 
 This project was completed using Jupyter Notebook and Python with Pandas, NumPy, Matplotlib, Gensim, NLTK and Spacy.
 
-This project is part two of [Quality Control for Banking using LDA and LDA Mallet](https://github.com/mick-zhang/Quality-Control-for-Banking-using-LDA-and-LDA-Mallet), where we're able to showcase information on Employer Reviews with full visualization of the results.
+This project is part two of [Quality Control for Banking using LDA and LDA Mallet](https://github.com/mick-zhang/Quality-Control-for-Banking-using-LDA-and-LDA-Mallet), where we're able to apply the same model in another business context. Moving forward, I will continue to explore other **Unsupervised Learning** techniques.
