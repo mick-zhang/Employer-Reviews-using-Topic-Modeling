@@ -3,9 +3,9 @@
 
 # # 1 Framing the Problem
 
-# Employers are always striving to motivate, and create a pleasant work environment for their team members, with the goal of increasing productivity levels, while maintaining strong employee retentions. It's also not a coincidence that each year, Employers are competing to land on the top 100 rankings such as "[Canada's Top 100 Employers](https://www.canadastop100.com/)" and "[Great Place To Work.](https://www.greatplacetowork.ca)"
+# Employers are always striving to motivate, and create a pleasant work environment for their team members, with the goal of increasing productivity level, while maintaining strong employee retention. It's also not a coincidence that each year, Employers are competing to land on the top 100 rankings such as "[Canada's Top 100 Employers](https://www.canadastop100.com/)" and "[Great Place To Work.](https://www.greatplacetowork.ca)"
 # 
-# In order to evaluate the quality of each Employers, we need to analyze Employer Reviews written by both former and current Employees to determine the results. Luckily, "[Glassdoor](https://www.glassdoor.ca)" was created for this reason, which gives an inside scope of each Employers. By understanding the main topics in each Employer Reviews, Employers can then make adjustment to improve their work environment, which ultimately improves Employee productivity/retention.
+# In order to evaluate the quality of each Employer, we need to analyze Employer Reviews written by both former and current Employees to determine the results. Luckily, "[Glassdoor](https://www.glassdoor.ca)" was created for this reason, which gives an inside scope of each Employer. By understanding the main topics in each Employer Reviews, Employers can then make adjustment to improve their work environment, which ultimately improves Employee productivity/retention.
 # 
 # However, some Employers have hundreds and thousands of reviews, which can take up a lot of time and resource to complete before determining the results.
 # <br>
@@ -13,9 +13,9 @@
 # 
 # **Business Solutions:**
 # 
-# To solve this issue, we will extract the main topics from all Employer Reviews for each Employer, to determine the overall consensus.
+# To solve this issue, we will extract the main topics from all Employer Reviews for each Employer, and then determine the overall consensus.
 # 
-# We will perform an <u>unsupervised learning</u> algorithm called Topic Modeling, with Latent Dirichlet Allocation (LDA) Model, and LDA Mallet (Machine Learning Language Toolkit) Model.
+# We will perform an <u>unsupervised learning</u> algorithm in Topic Modeling, which uses Latent Dirichlet Allocation (LDA) Model, and LDA Mallet (Machine Learning Language Toolkit) Model.
 # 
 # We will also determine the dominant topic associated to each Employee Reviews, as well as determining the Employee Reviews for each dominant topics for an in-depth analysis.
 # <br>
@@ -31,23 +31,23 @@
 # 
 # **Robustness:**
 # 
-# To ensure the model performs well, we will take the following approach:
+# To ensure the model performs well, we will take the following steps:
 # - Run the LDA Model and the LDA Mallet Model to compare the performances of each model
 # - Run the LDA Mallet Model and optimize the number of topics in the Employer Reviews by choosing the optimal model with highest performance
 # 
-# <u>Note</u> that the main different between LDA Model vs. LDA Mallet Model is that LDA Model uses Variational Bayes method which is faster, but less precise than LDA Mallet Model which uses Gibbs Sampling. 
+# <u>Note</u> that the main different between LDA Model vs. LDA Mallet Model is that, LDA Model uses Variational Bayes method, which is faster, but less precise than LDA Mallet Model which uses Gibbs Sampling. 
 # <br>
 # <br>
 # 
 # **Assumption:**
-# - To save computation power and time, we have taken a sample size of 500 for each Employers, and assuming that this dataset is sufficient to capture the topics in the Employer Reviews
+# - To save computation power and time, we have taken a sample size of 500 for each Employer, and assuming that this dataset is sufficient to capture the topics in the Employer Reviews
 # - We're also assuming that the results in this model is applicable in the same way, as if the model were applied on an entire population of the Employer Reviews dataset, with the exception of few parameter tweaks 
 # <br>
 # <br>
 # 
 # **Future:**
 # 
-# This is model is a Part Two of the "[Quality Control for Banking using LDA and LDA Mallet,](https://nbviewer.jupyter.org/github/mick-zhang/Quality-Control-for-Banking-using-LDA-and-LDA-Mallet/blob/master/Topic%20Bank%20Github.ipynb?flush_cache=true)" where we're able to showcase information on Employer Reviews with full visualization of the results.
+# This model is Part Two of the "[Quality Control for Banking using LDA and LDA Mallet,](https://nbviewer.jupyter.org/github/mick-zhang/Quality-Control-for-Banking-using-LDA-and-LDA-Mallet/blob/master/Topic%20Bank%20Github.ipynb?flush_cache=true)" where we're able to showcase information on Employer Reviews with full visualization of the results.
 
 # # 2 Data Overview
 
@@ -66,11 +66,11 @@ df.head(5)
 df['company'].unique()
 
 
-# After importing the data, we see that the "summary" column is where the Employer Reviews are for each Employers. This is the column that we are going to use for extracting topics.
+# After importing the data, we see that the "summary" column is where the Employer Reviews are for each Employer. This is the column that we are going to use for extracting topics.
 # 
-# Also, we see that there are 5 different Employers under the "company" column. As a result, we will review each company individually to capture the results of the Employer Reviews.
+# Also, we see that there are 5 different Employers under the "company" column. As a result, we will review only the first company to capture the results of the Employer Reviews.
 # 
-# <u>Note</u>: To reduce redundancy, we will showcase the steps below for the 1st Employer, and only the results for other Employers. The same steps that we will use for the 1st Employer can be replicated for other Employers.
+# <u>Note</u>: The same steps that we will use for the first Employer can be replicated for other Employers.
 
 # # 3 Topics Analysis for Google
 
@@ -87,7 +87,7 @@ dfg = dfg[['summary']]
 dfg = dfg.head(500)
 
 
-# Here we filter the dataset to the 1st Employer, and then we filtered to "summary" column for Employer Reviews. Lastly, we reduced the size of the sample to 500 to save computation time and power.
+# Here we have filtered the dataset for the first Employer. Next we filtered the "summary" column for Employer Reviews. Lastly, we reduced the size of the sample to 500 to save computation time and power.
 
 # # 4 Data Cleaning
 
@@ -121,7 +121,7 @@ pprint(data[:1])
 # In[11]:
 
 
-# Implement simple_preprocess for Tokenization and additional Cleaning
+# Implement simple_preprocess for Tokenization and additional cleaning
 import gensim
 from gensim.utils import simple_preprocess 
 def sent_to_words(sentences):
@@ -133,14 +133,14 @@ data_words = list(sent_to_words(data))
 # Remove stopwords using gensim's simple_preprocess and NLTK's stopwords
 from nltk.corpus import stopwords
 stop_words = stopwords.words('english')
-stop_words.extend(['from', 'subject', 're', 'edu', 'use']) # add additional stop words
+stop_words.extend(['from', 'subject', 're', 'edu', 'use']) # Add additional stop words
 def remove_stopwords(texts):
     return [[word for word in simple_preprocess(str(doc)) if word not in stop_words] for doc in texts]   
 data_words_nostops = remove_stopwords(data_words)
 
 
 # Create and Apply Bigrams and Trigrams
-bigram = gensim.models.Phrases(data_words, min_count=5, threshold=100) # higher threshold fewer phrases
+bigram = gensim.models.Phrases(data_words, min_count=5, threshold=100) # Higher threshold fewer phrases
 trigram = gensim.models.Phrases(bigram[data_words], threshold=100
 bigram_mod = gensim.models.phrases.Phraser(bigram)    # Faster way to get a sentence into a trigram/bigram
 trigram_mod = gensim.models.phrases.Phraser(trigram)
@@ -155,7 +155,7 @@ nlp = spacy.load('en', disable=['parser', 'ner'])
 def lemmatization(texts, allowed_postags=['NOUN', 'ADJ', 'VERB', 'ADV']):
     texts_out = []
     for sent in texts:
-        doc = nlp(" ".join(sent)) # adds English dictionary from Spacy
+        doc = nlp(" ".join(sent)) # Adds English dictionary from Spacy
         texts_out.append([token.lemma_ for token in doc if token.pos_ in allowed_postags])
         # lemma_ is base form and pos_ is lose part
     return texts_out
@@ -166,11 +166,11 @@ data_lemmatized = lemmatization(data_words_trigrams, allowed_postags=['NOUN', 'A
 print(data_lemmatized[:1])
 
 
-# Here we see texts that are Tokenized, Cleaned (stopwords removed), Lemmatized with applicable bigram and trigrams.
+# Here we are able to see texts that are Tokenized, Cleaned (stopwords removed), Lemmatized with applicable bigram and trigrams.
 
 # # 6 Prepare Dictionary and Corpus
 
-# Now that are data has been cleaned and pre-processed, here are the final steps that we need to implement before our data is ready for LDA input:
+# Now that our data have been cleaned and pre-processed, here are the final steps that we need to implement before our data is ready for LDA input:
 # - Create a dictionary from our pre-processed data using Gensim's `corpora.Dictionary`
 # - Create a corpus by applying "term frequency" (word count) to our "pre-processed data dictionary" using Gensim's `.doc2bow`
 
@@ -184,7 +184,7 @@ corpus = [id2word.doc2bow(text) for text in texts] # Apply Term Frequency
 print(corpus[:1])                                  # Preview the data
 
 
-# We can see that our corpus is a list of every word in an index form followed by their count frequency.
+# We can see that our corpus is a list of every word in an index form followed by count frequency.
 
 # In[13]:
 
@@ -202,19 +202,19 @@ id2word[0]
 
 # Lastly, we can see the list of every word in actual word (instead of index form) followed by their count frequency using a simple `for` loop.
 # 
-# Now that we have created our dictionary and corpus, we can now feed the data into our LDA Model.
+# Now that we have created our dictionary and corpus, we can feed the data into our LDA Model.
 
 # # 7 LDA Model
 
-# **Latent (hidden) Dirichlet Allocation** is a generative probabilistic model of a documents (composites) made up of words (parts). The model is based on the probability of words when selecting (sampling) topics (category), and the probability of selecting topics when selecting a document.
+# **Latent (hidden) Dirichlet Allocation** is a generative probabilistic model of a documents (composites) made up of words (parts). The model is based on the probability of words when selecting (sampling) topics (category), and the probability of topics when selecting a document.
 # 
-# Essentially we are extracting topics in documents by looking at the probability of words to determine the topics, and then the probability of topics to determine the document. 
+# Essentially, we are extracting topics in documents by looking at the probability of words to determine the topics, and then the probability of topics to determine the documents. 
 # 
 # There are two LDA algorithms. The **Variational Bayes** is used by Gensim's **LDA Model**, while **Gibb's Sampling** is used by **LDA Mallet Model** using Gensim's Wrapper package.
 # 
 # Here is the general overview of Variational Bayes and Gibbs Sampling:
 # - **Variational Bayes**
-#     - Sampling the variations between each word (part or variable) to determine which topic it belongs to (but some variations cannot be explained)
+#     - Sampling the variations between, and within each word (part or variable) to determine which topic it belongs to (but some variations cannot be explained)
 #     - Fast but less accurate
 # - **Gibb's Sampling (Markov Chain Monte Carlos)**
 #     - Sampling one variable at a time, conditional upon all other variables
@@ -248,7 +248,7 @@ coherence_lda = coherence_model_lda.get_coherence()
 print('Coherence Score: ', coherence_lda)
 
 
-# In order to determine the accuracy of the topics that we used, we will compute the Model Perplexity and Coherence Score. The Perplexity score measures how well the LDA Model predicts the sample (the lower the perplexity score, the better the model predicts). The Coherence score measures the quality of the topics that were learned (the higher the coherence score, the higher the quality of the learned topics).
+# In order to determine the accuracy of the topics that we used, we will compute the Perplexity Score and the Coherence Score. The Perplexity score measures how well the LDA Model predicts the sample (the lower the perplexity score, the better the model predicts). The Coherence score measures the quality of the topics that were learned (the higher the coherence score, the higher the quality of the learned topics).
 # 
 # Here we see a **Perplexity score of -5.49** (negative due to log space), and **Coherence score of 0.62**. 
 # 
@@ -270,15 +270,15 @@ vis
 
 # We are using pyLDAvis to visualize our topics. 
 # 
-# For interpreting pyLDAvis:
-# - Each bubble represent a topic
-# - The larger the bubble, the more prevalent is that topic
-# - A good topic model has fairly big non-overlapping bubbles scattered through the chart (instead of being clustered in one quadrant)
-# - Red highlight: Salient keywords that form the topic (most notable keywords)
+# For interpretation of pyLDAvis:
+# - Each bubble represents a topic
+# - The larger the bubble, the more prevalent the topic will be
+# - A good topic model has fairly big, non-overlapping bubbles scattered through the chart (instead of being clustered in one quadrant)
+# - Red highlight: Salient keywords that form the topics (most notable keywords)
 
 # # 9 LDA Mallet Model
 
-# Now that we have completed our Topic Model using "Variational Bayes" algorithm from Gensim's LDA, we will now explore Mallet's LDA (which is more accurate but slower) using Gibb's Sampling (Markov Chain Monte Carlos) under Gensim's Wrapper package.
+# Now that we have completed our Topic Modeling using "Variational Bayes" algorithm from Gensim's LDA, we will now explore Mallet's LDA (which is more accurate but slower) using Gibb's Sampling (Markov Chain Monte Carlos) under Gensim's Wrapper package.
 # 
 # Mallet's LDA Model is more accurate, since it utilizes Gibb's Sampling by sampling one variable at a time conditional upon all other variables.
 
@@ -290,12 +290,12 @@ from gensim.models.wrappers import LdaMallet
 os.environ.update({'MALLET_HOME':r'/Users/Mick/Desktop/mallet/'}) # Set environment
 mallet_path = '/Users/Mick/Desktop/mallet/bin/mallet'             # Update this path
 
-# Build LDA Mallet Model
+# Build the LDA Mallet Model
 ldamallet = LdaMallet(mallet_path,corpus=corpus,num_topics=7,id2word=id2word) # Here we selected 7 topics again
 pprint(ldamallet.show_topics(formatted=False))
 
 
-# After building the LDA Mallet Model using Gensim's Wrapper package, we now display our new 7 topics in our document along with the top 10 keywords and their corresponding weights that makes up each topic.
+# After building the LDA Mallet Model using Gensim's Wrapper package, here we see our 7 new topics in the document along with the top 10 keywords and their corresponding weights that makes up each topic.
 
 # ## 9.1 LDA Mallet Model Performance
 
@@ -308,9 +308,9 @@ coherence_ldamallet = coherence_model_ldamallet.get_coherence()
 print('\nCoherence Score: ', coherence_ldamallet)
 
 
-# Here we see that the Coherence Score for our **LDA Mallet Model** is showing **0.77** which is much improved in comparison to the 0.62 Coherence Score from the LDA Model above. Also, given that we are now using a more accurate model from **Gibb's Sampling**, and combined with the purpose of the Coherence Score it to measure the quality of the topics that were learned, then our next step is to improve the Coherence Score, which will ultimately improve the quality of the topics learned.
+# Here we see that the Coherence Score for our **LDA Mallet Model** is showing **0.77** which is much improved in comparison to the 0.62 Coherence Score from the LDA Model above. Also, given that we are now using a more accurate model from **Gibb's Sampling**, and combined with the purpose of the Coherence Score to measure the quality of the topics that were learned, then our next step is to improve the actual Coherence Score, which will ultimately improve the quality of the topics learned.
 # 
-# To improve the quality of the topics learned, we need to find the optimal number of topics in our document, and once we find the optimal number of topics in our document, then our Coherence Score will be improved as well since all the topics in the document are extracted accordingly without redundancy.
+# To improve the quality of the topics learned, we need to find the optimal number of topics in our document, and once we find the optimal number of topics in our document, then our Coherence Score will be optimized, since all the topics in the document are extracted accordingly without redundancy.
 
 # # 10 Finding the Optimal Number of Topics for LDA Mallet Model
 
@@ -318,7 +318,7 @@ print('\nCoherence Score: ', coherence_ldamallet)
 # 
 #     compute_coherence_values
 #     
-# <u>Note</u>: We will trained our model to find topics between the range of 2 to 40 topics, and at an interval of 6.
+# <u>Note</u>: We will trained our model to find topics between the range of 2 to 40 topics with an interval of 6.
 
 # In[23]:
 
@@ -356,7 +356,7 @@ for m, cv in zip(x, coherence_values):
 
 # With our models trained, and the performances visualized, we can see that the optimal number of topics here is **20 topics** with a Coherence Score of **0.78** which is slightly higher than our previous results at 0.77. However, we can also see that the model with a coherence score of 0.78 is also the highest scoring model, which implies that there are a total 20 dominant topics in this document.
 # 
-# We will proceed to select our final model using 20 topics.
+# We will proceed and select our final model using 20 topics.
 
 # In[25]:
 
@@ -406,14 +406,14 @@ plt.show()
 # Here we also visualized the first 4 topics in our document along with the top 10 keywords. Each keyword's corresponding weights are shown by the size of the text.
 # 
 # Based on the visualization, we see the following topics:
-# - Topic 0: Employee Compensation
-# - Topic 1: Manager
-# - Topic 2: Employee Growth
+# - Topic 0: Employer Quality
+# - Topic 1: Management Quality
+# - Topic 2: Employer Perception
 # - Topic 3: Employee Happiness
 
 # # 11 Analysis
 
-# Now that our **Optimal Model** is constructed, we will utilize the purpose of LDA and determine the following:
+# Now that our **Optimal Model** is constructed, we will apply the model and determine the following:
 # - Determine the dominant topics for each document
 # - Determine the most relevant document for each of the 20 dominant topics
 # - Determine the distribution of documents contributed to each of the 20 dominant topics
@@ -437,7 +437,7 @@ def format_topics_sentences(ldamodel=optimal_model, corpus=corpus, texts=data):
                                                                   topic_keywords]), ignore_index=True)
             else:
                 break
-    sent_topics_df.columns = ['Dominant_Topic', 'Perc_Contribution', 'Topic_Keywords'] # create dataframe title
+    sent_topics_df.columns = ['Dominant_Topic', 'Perc_Contribution', 'Topic_Keywords'] # Create dataframe title
     # Add original text to the end of the output (recall that texts = data_lemmatized)
     contents = pd.Series(texts)
     sent_topics_df = pd.concat([sent_topics_df, contents], axis=1)
@@ -493,4 +493,4 @@ df_dominant_topics
 # 
 # As a result, we are now able to see the 20 dominant topics that were extracted from our dataset. Furthermore, we are also able to see the dominant topic for each of the 500 documents, and determine the most relevant document for each dominant topics.
 # 
-# With the in-depth analysis of each individual topics and documents above, Employers can use this approach to learn the topics from Employer Reviews, and then make appropriate adjustments to improve their work environment, which can ultimately improve employee productivity/retention.
+# With the in-depth analysis of each individual topics and documents above, Employers can use this approach to learn the topics from Employer Reviews, and make appropriate adjustments to improve their work environment, which can ultimately improve employee productivity/retention.
