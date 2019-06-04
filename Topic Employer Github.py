@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # 1 Framing the Problem
+# # 1 Business Problem
 
 # Employers are always striving to motivate, and create a pleasant work environment for their team members, with the goal of increasing productivity level, while maintaining strong employee retention. It's also not a coincidence that each year, Employers are competing to land on the top 100 rankings such as "[Canada's Top 100 Employers](https://www.canadastop100.com/)" and "[Great Place To Work.](https://www.greatplacetowork.ca)"
 # 
@@ -102,7 +102,7 @@ data = dfg['summary'].values.tolist() # convert to list
 import re
 data = [re.sub(r'[^a-zA-Z ]+', '', str(sent)) for sent in data] 
 
-# Preview the first list of the cleansed data
+# Preview the first list of the cleaned data
 from pprint import pprint
 pprint(data[:1])
 
@@ -308,7 +308,7 @@ coherence_ldamallet = coherence_model_ldamallet.get_coherence()
 print('\nCoherence Score: ', coherence_ldamallet)
 
 
-# Here we see that the Coherence Score for our **LDA Mallet Model** is showing **0.77** which is much improved in comparison to the 0.62 Coherence Score from the LDA Model above. Also, given that we are now using a more accurate model from **Gibb's Sampling**, and combined with the purpose of the Coherence Score to measure the quality of the topics that were learned, then our next step is to improve the actual Coherence Score, which will ultimately improve the quality of the topics learned.
+# Here we see that the Coherence Score for our **LDA Mallet Model** is showing **0.77** which is much improved in comparison to the 0.62 Coherence Score from the LDA Model above. Also, given that we are now using a more accurate model from **Gibb's Sampling**, and combined with the purpose of the Coherence Score was to measure the quality of the topics that were learned, then our next step is to improve the actual Coherence Score, which will ultimately improve the overall quality of the topics learned.
 # 
 # To improve the quality of the topics learned, we need to find the optimal number of topics in our document, and once we find the optimal number of topics in our document, then our Coherence Score will be optimized, since all the topics in the document are extracted accordingly without redundancy.
 
